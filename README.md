@@ -28,7 +28,7 @@ Para conseguir el efecto deseado observa que:
   
 SieteYMedia “usa” InterfaceConsola y esto no es correcto
 
-![image](images/relacionusamal)
+![image](images/relacionusamal.png)
 
 
 
@@ -83,7 +83,7 @@ class InterfaceConsola{
 
 - Por el contrario si InterfaceConsola “usa” SieteYMedia,  es OK
   
-![image](images/relacionusaok)
+![image](images/relacionusaok.png)
 
 
 
