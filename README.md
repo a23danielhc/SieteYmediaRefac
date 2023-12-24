@@ -14,19 +14,30 @@ Reestructurar el  proyecto SieteYMedia de forma que:
 - El paquete recursos es el mismo. 
 - El paquete sieteymedia es lo que tienes que modificar de forma que haga exactamente lo mismo que Gamecontroler.java pero ahora repartiendo el trabajo y responsabilidad de GameControler en  dos clases:
    - SieteYMedia.java se ocupe de la lógica de negocio
-   - InterfaceConsola de la lógica de presentación. 
+   - InterfaceConsola de la lógica de presentación.
+ 
+     
+![image](https://github.com/lozanoSC/SieteYmediaRefac/assets/130983101/eab1f9b7-307b-4856-9315-bd668d7b97a3)
 
 Para conseguir el efecto deseado observa que:
 - La aplicación ahora es más compleja, se divide una clase en dos y surgen nuevos métodos necesarios para la comunicación entre ellas. ¿Merece la pena?. Vamos a suponer que sí porque queremos hacer más adelante para este juego su versión gráfica, de esta manera, separando la lógica de la presentación  sólo tendremos que volver a escribir la clase Interface para adecuarla a la nueva entrada/salida pero la clase SieteYMedia no tendremos que tocarla.
 - El teclado y la pantalla sólo los maneja InterfaceConsola. ¡ni un println ni un Scanner en SieteYMedia!
 - ¿Cómo devuelve los datos SieteYMedia a InterfaceConsola?. Supongamos que InterfaceConsola quiere imprimir las cartas que tiene en un momento dado el Jugador ¿Cómo le pasa SieteYMedia esta información a interfaceConsola?. SieteYMedia puede devolver un simple String para que lo imprima InterfaceConsola o bien una estructura más compleja como un array de cartas. La primera es muy sencilla y clara pero la segunda es más flexible ya que no limita a InterfaceConsola a  imprimir un String concreto. Usa la segunda.
 - Debes de crear un objeto SieteYMedia y un objeto InterfaceConsola. Esta pequeña App se puede desarrollar perfectamente sin crear objetos y usando metodos static de clase pero EVITA ESTO ¡estamos aprendiendo POO!. Usar static no es pecado mortal pero su abuso anula los principios de POO (más sobre esto más adelante)
--evita el siguiene error en la relación entre las dos clases
+- evita el siguiene error en la relación entre las dos clases.
+  
 SieteYMedia “usa” InterfaceConsola y esto no es correcto
+
+![image](https://github.com/lozanoSC/SieteYmediaRefac/assets/130983101/5f97ce4f-4378-4809-8b9b-5a9c82ee78ba)
+
+
+
+
 La flecha de abajo que relaciona las clases se refiere a la relación “usa”. El siguiente gráfico indica que SieteYMedio “usa” InterfaceConsola y justamente esto  SE DEBE EVITAR  para conseguir que la lógica del juego sea independiente de la E/S. Fíjate bien en el sentido de la flecha. 
 
 
 Si un objeto SieteYMedia invoca a un objeto InterfaceConsola() pasa a ser dependiente de esa clase y no es reutilizable para otras aplicaciones que usen otro tipo de entrada salida.
+```java
 class SieteYMedia{
 	…..
          InterfaceConsola miconsola= new InterfaceConsola()
@@ -35,17 +46,22 @@ class SieteYMedia{
 	……….
           
 }
+```
 
-si hacemos invocaciones a métodos static en lugar de crear un objeto la dependencia persiste y además recuerda que en esta práctica debemos evitar el uso de static, o sea, todavía peor 
+peor todavía si usamos métodos static 
+```java
 class SieteYMedia{
 	…..
          InterfaceConsola.presentarJuego(); //mal
          ………….
           
 }
+```
 
 - evita que SieteYMedia haga funciones de E/S encubiertas
+  
 Otro error común es que SieteYMedia genere Strings que enmascaran realmente println() de tal forma que InterfaceConsola recibiría unos Strings que puede no desear para comunicarse con el usuario, por ejemplo, se los manda en castellano y los quiere en “Galego” o no le gusta la redacción o lo que sea.
+```java
  class SieteYMedia{
 	…..
         String presentar(){
@@ -55,7 +71,7 @@ Otro error común es que SieteYMedia genere Strings que enmascaran realmente pri
         ……….
           
 }
-class InteraceConsola{
+class InterfaceConsola{
 	…..
        SieteYMedia juego= new SieteYMedia();    
         ……….
@@ -63,12 +79,17 @@ class InteraceConsola{
       …………
           
 }
+```
 
 - Por el contrario si InterfaceConsola “usa” SieteYMedia,  es OK
+  
+![image](https://github.com/lozanoSC/SieteYmediaRefac/assets/130983101/5ed5d88c-1200-4f13-8ac2-ae440b1009ae)
+
+
 
 
 Ahora la flecha cambia de sentido de forma que InterfaceConsola “usa” SieteYMedia
-
+```java
 class InterfaceConsola{
 …………….
 SieteYMedia miObjetoSieteYMedia= new SieteYMedia();
@@ -77,12 +98,7 @@ System.out.println(miObjetSieteYMedia.valorCartasJugador());
 ………
 
 }
-
-podríamos tener muchos clases que desarrollan distintos tipos de interfaces Y que todos utilicen la misma lógica del juego ¡conseguimos reutilizar código!. Para conseguir esto la clase SieteYMedia no puede hacer referencia a ningún tipo de E/S
-
-
+```
+De esta manera podríamos tener muchos clases que desarrollan distintos tipos de interfaces Y que todos utilicen la misma lógica del juego ¡conseguimos reutilizar código!. Para conseguir esto, tienes que tener absolutamente claro que la clase SieteYMedia no puede hacer referencia a ningún tipo de E/S
 
 
-
-
-Al respecto de tu solución,  va a observar simplemente que se cumple la arquitectura a dos capas, no que la lógica de funcionamiento es correcta, de todas formas, procura que funcione bien pues es muy probable que este ejercicio tenga una segunda parte ampliada.
