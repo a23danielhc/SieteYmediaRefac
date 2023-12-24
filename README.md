@@ -17,7 +17,7 @@ Reestructurar el  proyecto SieteYMedia de forma que:
    - InterfaceConsola de la lógica de presentación.
  
      
-![image](https://github.com/lozanoSC/SieteYmediaRefac/assets/130983101/eab1f9b7-307b-4856-9315-bd668d7b97a3)
+![image](images/estructurasolucion.PNG)
 
 Para conseguir el efecto deseado observa que:
 - La aplicación ahora es más compleja, se divide una clase en dos y surgen nuevos métodos necesarios para la comunicación entre ellas. ¿Merece la pena?. Vamos a suponer que sí porque queremos hacer más adelante para este juego su versión gráfica, de esta manera, separando la lógica de la presentación  sólo tendremos que volver a escribir la clase Interface para adecuarla a la nueva entrada/salida pero la clase SieteYMedia no tendremos que tocarla.
