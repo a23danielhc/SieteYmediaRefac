@@ -28,7 +28,7 @@ Para conseguir el efecto deseado observa que:
   
 SieteYMedia “usa” InterfaceConsola y esto no es correcto
 
-![image](https://github.com/lozanoSC/SieteYmediaRefac/assets/130983101/5f97ce4f-4378-4809-8b9b-5a9c82ee78ba)
+![image](images/relacionusamal)
 
 
 
@@ -83,7 +83,7 @@ class InterfaceConsola{
 
 - Por el contrario si InterfaceConsola “usa” SieteYMedia,  es OK
   
-![image](https://github.com/lozanoSC/SieteYmediaRefac/assets/130983101/5ed5d88c-1200-4f13-8ac2-ae440b1009ae)
+![image](images/relacionusaok)
 
 
 
