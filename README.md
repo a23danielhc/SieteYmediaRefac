@@ -13,8 +13,11 @@ Observa que la clase GameControler mezcla la lógica de negocio y la lógica de 
 Reestructurar el  proyecto SieteYMedia de forma que:  
 - El paquete recursos es el mismo. 
 - El paquete sieteymedia es lo que tienes que modificar de forma que haga exactamente lo mismo que Gamecontroler.java pero ahora repartiendo el trabajo y responsabilidad de GameControler en  dos clases:
-   - SieteYMedia.java se ocupe de la lógica de negocio
-   - InterfaceConsola de la lógica de presentación.
+   - SieteYMedia.java 
+   - InterfaceConsola.
+  Quedando por tanto la App organizada en:
+- Capa lógica: clases de paquete recursos y clase SieteYMedia
+- Capa de presentacion: clase InterfaceConsola.  Si la E/S fuera más compleja podrían aparecer más clases que colaboraran en la capa presentación, pero quizá sea suficente con una única clase.
  
      
 ![image](images/estructurasolucion.PNG)
